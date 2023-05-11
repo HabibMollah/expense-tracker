@@ -1,56 +1,48 @@
 import { useForm } from 'react-hook-form';
+import Form from './Form';
 
 function App() {
-  const { register } = useForm();
-  console.log(register('name'));
+  const { register, handleSubmit } = useForm();
   return (
     <div>
-      {/* Form */}
+      <Form register={register} handleSubmit={handleSubmit} />
+      {/* table */}
       <div className="mx-auto w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
-        <form className="form-control">
-          <div>
-            <div>
-              <label className="label" htmlFor="description">
-                Description
-              </label>
-              <input
-                {...register('description')}
-                type="text"
-                className="input-bordered input w-[100%]"
-                name=""
-                id=""
-              />
-            </div>
-            <div>
-              <label className="label" htmlFor="amount">
-                Amount
-              </label>
-              <input
-                {...register('amount')}
-                type="number"
-                className="input-bordered input w-[100%]"
-                name=""
-                id="amount"
-              />
-            </div>
-            <div>
-              <label className="label" htmlFor="catagory">
-                Catagory
-              </label>
-              <select
-                className="select-bordered select block w-[100%] rounded-lg p-2 text-xl"
-                name=""
-                id="catagory">
-                <option value="">Groceries</option>
-                <option value="">Utilities</option>
-                <option value="">Entertainment</option>
-              </select>
-            </div>
-          </div>
-          <button className="btn my-4 w-[100%]" type="submit">
-            Submit
-          </button>
-        </form>
+        <div>
+          <select id="filter" className="select-bordered select mt-8 w-[100%]">
+            <option value="">All categories</option>
+            <option value="groceries">Groceries</option>
+            <option value="utilities">Utilities</option>
+            <option value="entertainment">Entertainment</option>
+          </select>
+        </div>
+
+        <div className="my-4">
+          <table className="table-c table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Milk</td>
+                <td>5</td>
+                <td>Groceries</td>
+                <td></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td>
+                <td>5</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
   );
