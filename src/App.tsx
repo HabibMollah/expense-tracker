@@ -13,10 +13,13 @@ function App() {
     { id: 6, description: 'Rice', amount: 8, category: 'Groceries' },
   ]);
   const { register, handleSubmit } = useForm();
+  function onDelete(id: number) {
+    setExpenses(expenses.filter((expense) => expense.id !== id));
+  }
   return (
     <div>
       <Form register={register} handleSubmit={handleSubmit} />
-      <ExpenseList expenses={expenses} />
+      <ExpenseList expenses={expenses} onDelete={onDelete} />
     </div>
   );
 }

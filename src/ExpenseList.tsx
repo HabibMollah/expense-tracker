@@ -1,3 +1,4 @@
+import { IconContext } from 'react-icons';
 import { RxCross2 } from 'react-icons/rx';
 import { IoCloseSharp } from 'react-icons/io5';
 interface Expense {
@@ -8,8 +9,9 @@ interface Expense {
 }
 interface Props {
   expenses: Expense[];
+  onDelete: (id: number) => void;
 }
-function ExpenseList({ expenses }: Props) {
+function ExpenseList({ expenses, onDelete }: Props) {
   return (
     <div className="mx-auto w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
       <div>
@@ -35,8 +37,13 @@ function ExpenseList({ expenses }: Props) {
               return (
                 <tr key={expense.id}>
                   <td>
-                    <button className="mx-1 font-bold text-gray-400 hover:font-extrabold hover:text-red-500">
-                      <IoCloseSharp />
+                    <button
+                      onClick={() => onDelete(expense.id)}
+                      className="p-1 text-lg text-red-300 hover:text-red-600">
+                      <IconContext.Provider
+                        value={{ style: { marginBottom: '-4px' } }}>
+                        <IoCloseSharp />
+                      </IconContext.Provider>
                     </button>
                     {expense.description}
                   </td>
