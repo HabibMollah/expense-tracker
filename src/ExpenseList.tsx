@@ -11,7 +11,7 @@ function ExpenseList() {
       </div>
 
       <div className="my-4">
-        <table className="table-c table">
+        <table className="table-compact table w-[100%] lg:table-normal">
           <thead>
             <tr>
               <th>Description</th>
@@ -24,7 +24,6 @@ function ExpenseList() {
               <td>Milk</td>
               <td>5</td>
               <td>Groceries</td>
-              <td></td>
             </tr>
           </tbody>
           <tfoot>
