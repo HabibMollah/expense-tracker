@@ -1,7 +1,9 @@
+import { RxCross2 } from 'react-icons/rx';
+import { IoCloseSharp } from 'react-icons/io5';
 interface Expense {
   id: number;
   description: string;
-  amount: string;
+  amount: number;
   category: string;
 }
 interface Props {
@@ -29,16 +31,27 @@ function ExpenseList({ expenses }: Props) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Milk</td>
-              <td>5</td>
-              <td>Groceries</td>
-            </tr>
+            {expenses.map((expense) => {
+              return (
+                <tr key={expense.id}>
+                  <td>
+                    <button className="mx-1 font-bold text-gray-400 hover:font-extrabold hover:text-red-500">
+                      <IoCloseSharp />
+                    </button>
+                    {expense.description}
+                  </td>
+                  <td>{expense.amount}</td>
+                  <td>{expense.category}</td>
+                </tr>
+              );
+            })}
           </tbody>
           <tfoot>
             <tr>
               <td>Total</td>
-              <td>5</td>
+              <td>
+                {expenses.reduce((acc, expense) => acc + expense.amount, 0)}
+              </td>
               <td></td>
             </tr>
           </tfoot>
