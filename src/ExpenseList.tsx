@@ -12,6 +12,8 @@ interface Props {
   onDelete: (id: number) => void;
 }
 function ExpenseList({ expenses, onDelete }: Props) {
+  if (expenses.length < 1)
+    return <p className="my-16 text-center text-lg font-light">No items</p>;
   return (
     <div className="mx-auto w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
       <div>
