@@ -1,4 +1,13 @@
-function ExpenseList() {
+interface Expense {
+  id: number;
+  description: string;
+  amount: string;
+  category: string;
+}
+interface Props {
+  expenses: Expense[];
+}
+function ExpenseList({ expenses }: Props) {
   return (
     <div className="mx-auto w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
       <div>

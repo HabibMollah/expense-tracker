@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <Form register={register} handleSubmit={handleSubmit} />
-      <ExpenseList />
+      <ExpenseList expenses={expenses} />
     </div>
   );
 }
