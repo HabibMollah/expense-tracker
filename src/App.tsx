@@ -12,14 +12,25 @@ function App() {
     { id: 5, description: 'TV', amount: 500, category: 'Entertainment' },
     { id: 6, description: 'Rice', amount: 8, category: 'Groceries' },
   ]);
+
+  const [filterCategory, setFilterCategory] = useState('');
+
   const { register, handleSubmit } = useForm();
+
+  console.log(filterCategory);
+
   function onDelete(id: number) {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   }
   return (
     <div>
       <Form register={register} handleSubmit={handleSubmit} />
-      <ExpenseList expenses={expenses} onDelete={onDelete} />
+      <ExpenseList
+        expenses={expenses}
+        onDelete={onDelete}
+        filterCategory={filterCategory}
+        setFilterCategory={(ctgry: string) => setFilterCategory(ctgry)}
+      />
     </div>
   );
 }
