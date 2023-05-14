@@ -1,5 +1,4 @@
 import { IconContext } from 'react-icons';
-import { RxCross2 } from 'react-icons/rx';
 import { IoCloseSharp } from 'react-icons/io5';
 interface Expense {
   id: number;
@@ -38,7 +37,7 @@ function ExpenseList({ expenses, onDelete }: Props) {
             {expenses.map((expense) => {
               return (
                 <tr key={expense.id}>
-                  <td>
+                  <td className="whitespace-pre-line break-all">
                     <button
                       onClick={() => onDelete(expense.id)}
                       className="p-1 text-lg text-red-300 hover:text-red-600">
