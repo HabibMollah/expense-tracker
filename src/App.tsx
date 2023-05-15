@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form';
 import Form from './Form';
 import ExpenseList from './ExpenseList';
 import { useState } from 'react';
@@ -14,14 +13,13 @@ function App() {
   ]);
 
   const [filterCategory, setFilterCategory] = useState('');
-  const { register, handleSubmit } = useForm();
   function onDelete(id: number) {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   }
 
   return (
     <div>
-      <Form register={register} handleSubmit={handleSubmit} />
+      <Form />
       <ExpenseList
         expenses={expenses}
         onDelete={onDelete}

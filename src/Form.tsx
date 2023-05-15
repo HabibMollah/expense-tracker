@@ -1,14 +1,17 @@
-import {
-  FieldValues,
-  UseFormHandleSubmit,
-  UseFormRegister,
-} from 'react-hook-form';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 
-interface Props {
-  register: UseFormRegister<FieldValues>;
-  handleSubmit: UseFormHandleSubmit<FieldValues>;
-}
-function Form({ register, handleSubmit }: Props) {
+const schema = z.object({
+  description: z.string().min(2).max(20),
+  amount: z.number().min(0.01).max(100_000),
+  category: z.enum(['Groceries', 'Utilities', 'Entertainment']),
+});
+
+type FormData = z.infer<typeof schema>;
+
+function Form() {
+  const { register, handleSubmit } = useForm<FormData>();
+
   return (
     <div className="mx-auto w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
       <form
