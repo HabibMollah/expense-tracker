@@ -38,12 +38,12 @@ function Form({ register, handleSubmit }: Props) {
             />
           </div>
           <div>
-            <label className="label" htmlFor="catagory">
+            <label className="label" htmlFor="category">
               Category
             </label>
             <select
               className="select-bordered select block w-[100%] rounded-lg p-2 text-xl"
-              id="catagory">
+              id="category">
               <option value="groceries">Groceries</option>
               <option value="utilities">Utilities</option>
               <option value="entertainment">Entertainment</option>

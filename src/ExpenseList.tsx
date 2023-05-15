@@ -18,6 +18,10 @@ function ExpenseList({
   filterCategory,
   setFilterCategory,
 }: Props) {
+  const filteredExpenses = expenses.filter(
+    (expense) => expense.category === filterCategory
+  );
+
   if (expenses.length < 1)
     return <p className="my-16 text-center text-lg font-light">No items</p>;
   return (
@@ -43,29 +47,15 @@ function ExpenseList({
             </tr>
           </thead>
           <tbody>
-            {filterCategory
-              ? expenses
-                  .filter((expense) => expense.category === filterCategory)
-                  .map((expense) => {
-                    return (
-                      <tr key={expense.id}>
-                        <td className="whitespace-pre-line break-all">
-                          <button
-                            onClick={() => onDelete(expense.id)}
-                            className="p-1 text-lg text-red-300 hover:text-red-600">
-                            <IconContext.Provider
-                              value={{ style: { marginBottom: '-4px' } }}>
-                              <IoCloseSharp />
-                            </IconContext.Provider>
-                          </button>
-                          {expense.description}
-                        </td>
-                        <td>{expense.amount}</td>
-                        <td>{expense.category}</td>
-                      </tr>
-                    );
-                  })
-              : expenses.map((expense) => {
+            {filterCategory ? (
+              filteredExpenses.length < 1 ? (
+                <tr>
+                  <td colSpan={3}>
+                    <p className="text-center">No items</p>
+                  </td>
+                </tr>
+              ) : (
+                filteredExpenses.map((expense) => {
                   return (
                     <tr key={expense.id}>
                       <td className="whitespace-pre-line break-all">
@@ -83,7 +73,29 @@ function ExpenseList({
                       <td>{expense.category}</td>
                     </tr>
                   );
-                })}
+                })
+              )
+            ) : (
+              expenses.map((expense) => {
+                return (
+                  <tr key={expense.id}>
+                    <td className="whitespace-pre-line break-all">
+                      <button
+                        onClick={() => onDelete(expense.id)}
+                        className="p-1 text-lg text-red-300 hover:text-red-600">
+                        <IconContext.Provider
+                          value={{ style: { marginBottom: '-4px' } }}>
+                          <IoCloseSharp />
+                        </IconContext.Provider>
+                      </button>
+                      {expense.description}
+                    </td>
+                    <td>{expense.amount}</td>
+                    <td>{expense.category}</td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
           <tfoot>
             <tr>
