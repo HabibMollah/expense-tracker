@@ -14,14 +14,11 @@ function App() {
   ]);
 
   const [filterCategory, setFilterCategory] = useState('');
-
   const { register, handleSubmit } = useForm();
-
-  console.log(filterCategory);
-
   function onDelete(id: number) {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   }
+
   return (
     <div>
       <Form register={register} handleSubmit={handleSubmit} />

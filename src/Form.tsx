@@ -44,9 +44,9 @@ function Form({ register, handleSubmit }: Props) {
             <select
               className="select-bordered select block w-[100%] rounded-lg p-2 text-xl"
               id="category">
-              <option value="groceries">Groceries</option>
-              <option value="utilities">Utilities</option>
-              <option value="entertainment">Entertainment</option>
+              <option value="Groceries">Groceries</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Entertainment">Entertainment</option>
             </select>
           </div>
         </div>
