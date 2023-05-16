@@ -1,6 +1,7 @@
-import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
 const schema = z.object({
   description: z.string().min(2).max(20),
   amount: z.number().min(0.01).max(100_000),
