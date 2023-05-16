@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-
+import { zodResolver } from '@hookform/resolvers/zod';
 const schema = z.object({
   description: z.string().min(2).max(20),
   amount: z.number().min(0.01).max(100_000),
@@ -10,7 +10,13 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 function Form() {
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
 
   return (
     <div className="mx-auto w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
@@ -45,6 +51,7 @@ function Form() {
               Category
             </label>
             <select
+              {...register('category')}
               className="select-bordered select block w-[100%] rounded-lg p-2 text-xl"
               id="category">
               <option value="Groceries">Groceries</option>
