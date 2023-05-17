@@ -101,7 +101,9 @@ function ExpenseList({
             <tr>
               <td>Total</td>
               <td>
-                {expenses.reduce((acc, expense) => acc + expense.amount, 0)}
+                {expenses
+                  .reduce((acc, expense) => acc + expense.amount, 0)
+                  .toFixed(2)}
               </td>
               <td></td>
             </tr>

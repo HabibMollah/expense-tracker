@@ -16,7 +16,6 @@ function App() {
   function onDelete(id: number) {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   }
-
   return (
     <div>
       <Form />
