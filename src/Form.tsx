@@ -36,6 +36,7 @@ function Form({ expenses, setExpenses }: Props) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -47,6 +48,7 @@ function Form({ expenses, setExpenses }: Props) {
         className="form-control"
         onSubmit={handleSubmit((data) => {
           setExpenses([...expenses, { ...data, id: crypto.randomUUID() }]);
+          reset();
         })}>
         <div>
           <div>
