@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { Dispatch } from 'react';
 
 const schema = z.object({
   description: z
@@ -18,7 +19,19 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-function Form() {
+interface Expense {
+  id: string;
+  description: string;
+  amount: number;
+  category: string;
+}
+
+interface Props {
+  expenses: Expense[];
+  setExpenses: Dispatch<React.SetStateAction<Expense[]>>;
+}
+
+function Form({ expenses, setExpenses }: Props) {
   const {
     register,
     handleSubmit,
@@ -32,7 +45,7 @@ function Form() {
       <form
         className="form-control"
         onSubmit={handleSubmit((data) => {
-          console.log(data);
+          setExpenses([...expenses, { ...data, id: crypto.randomUUID() }]);
         })}>
         <div>
           <div>
@@ -59,6 +72,7 @@ function Form() {
             <input
               {...register('amount', { valueAsNumber: true })}
               type="number"
+              step="any"
               className="input-bordered input w-[100%]"
               id="amount"
               placeholder="$0.01 - $100,000"

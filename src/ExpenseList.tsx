@@ -1,14 +1,14 @@
 import { IconContext } from 'react-icons';
 import { IoCloseSharp } from 'react-icons/io5';
 interface Expense {
-  id: number;
+  id: string;
   description: string;
   amount: number;
   category: string;
 }
 interface Props {
   expenses: Expense[];
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
   filterCategory: string;
   setFilterCategory: (ctgry: string) => void;
 }
@@ -69,7 +69,7 @@ function ExpenseList({
                         </button>
                         {expense.description}
                       </td>
-                      <td>{expense.amount}</td>
+                      <td>${expense.amount}</td>
                       <td>{expense.category}</td>
                     </tr>
                   );
@@ -90,7 +90,7 @@ function ExpenseList({
                       </button>
                       {expense.description}
                     </td>
-                    <td>{expense.amount}</td>
+                    <td>${expense.amount}</td>
                     <td>{expense.category}</td>
                   </tr>
                 );
@@ -101,6 +101,7 @@ function ExpenseList({
             <tr>
               <td>Total</td>
               <td>
+                $
                 {expenses
                   .reduce((acc, expense) => acc + expense.amount, 0)
                   .toFixed(2)}

@@ -3,27 +3,29 @@ import ExpenseList from './ExpenseList';
 import { useState } from 'react';
 
 function App() {
-  const [expenses, setExpenses] = useState([
-    { id: 1, description: 'Milk', amount: 5, category: 'Groceries' },
-    { id: 2, description: 'Water', amount: 1, category: 'Groceries' },
-    { id: 3, description: 'Radio', amount: 15, category: 'Entertainment' },
-    { id: 4, description: 'Electric wire', amount: 3, category: 'Utilities' },
-    { id: 5, description: 'TV', amount: 500, category: 'Entertainment' },
-    { id: 6, description: 'Rice', amount: 8, category: 'Groceries' },
-  ]);
+  interface Expense {
+    id: string;
+    description: string;
+    amount: number;
+    category: string;
+  }
+  const [expenses, setExpenses] = useState<Expense[]>([]);
 
   const [filterCategory, setFilterCategory] = useState('');
-  function onDelete(id: number) {
+  function onDelete(id: string) {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   }
   return (
     <div>
-      <Form />
+      <div>
+        <h1 className="text-center text-xl font-bold">💸MoneyMate</h1>
+      </div>
+      <Form expenses={expenses} setExpenses={setExpenses} />
       <ExpenseList
         expenses={expenses}
         onDelete={onDelete}
         filterCategory={filterCategory}
-        setFilterCategory={(ctgry: string) => setFilterCategory(ctgry)}
+        setFilterCategory={(category: string) => setFilterCategory(category)}
       />
     </div>
   );
