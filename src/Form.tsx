@@ -44,6 +44,7 @@ function Form() {
               type="text"
               className="input-bordered input w-[100%]"
               id="description"
+              placeholder="e.g. Milk"
             />
             {errors.description && (
               <p className="mt-1 text-sm text-red-600">
@@ -60,6 +61,7 @@ function Form() {
               type="number"
               className="input-bordered input w-[100%]"
               id="amount"
+              placeholder="$0.01 - $100,000"
             />
             {errors.amount && (
               <p className="mt-1 text-sm text-red-600">
@@ -73,7 +75,7 @@ function Form() {
             </label>
             <select
               {...register('category')}
-              className="select-bordered select block w-[100%] rounded-lg p-2 text-xl"
+              className="select-bordered select block w-[100%] rounded-lg p-2"
               id="category">
               <option value=""></option>
               <option value="Groceries">Groceries</option>
