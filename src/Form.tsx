@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Dispatch } from 'react';
+import categories from './categories';
 
 const schema = z.object({
   description: z
@@ -12,7 +13,7 @@ const schema = z.object({
     .number({ invalid_type_error: 'Amount required' })
     .min(0.01)
     .max(100_000),
-  category: z.enum(['Groceries', 'Utilities', 'Entertainment'], {
+  category: z.enum(categories, {
     errorMap: () => ({ message: 'Category is required' }),
   }),
 });
@@ -92,9 +93,11 @@ function Form({ expenses, setExpenses }: Props) {
               className="select-bordered select block w-[100%] rounded-lg p-2"
               id="category">
               <option value=""></option>
-              <option value="Groceries">Groceries</option>
-              <option value="Utilities">Utilities</option>
-              <option value="Entertainment">Entertainment</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
             {errors.category && (
               <p className="mt-1 text-sm text-red-600">

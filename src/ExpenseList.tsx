@@ -1,5 +1,6 @@
 import { IconContext } from 'react-icons';
 import { IoCloseSharp } from 'react-icons/io5';
+import categories from './categories';
 interface Expense {
   id: string;
   description: string;
@@ -10,7 +11,7 @@ interface Props {
   expenses: Expense[];
   onDelete: (id: string) => void;
   filterCategory: string;
-  setFilterCategory: (ctgry: string) => void;
+  setFilterCategory: (category: string) => void;
 }
 function ExpenseList({
   expenses,
@@ -31,9 +32,11 @@ function ExpenseList({
           onChange={(e) => setFilterCategory(e.target.value)}
           className="select-bordered select mt-8 w-[100%]">
           <option value="">All categories</option>
-          <option value="Groceries">Groceries</option>
-          <option value="Utilities">Utilities</option>
-          <option value="Entertainment">Entertainment</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
 

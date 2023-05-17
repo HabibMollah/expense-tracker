@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       <div>
-        <h1 className="text-center text-xl font-bold">💸MoneyMate</h1>
+        <h1 className="text-center text-2xl font-bold">💸MoneyMate</h1>
       </div>
       <Form expenses={expenses} setExpenses={setExpenses} />
       <ExpenseList
